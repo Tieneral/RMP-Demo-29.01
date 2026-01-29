@@ -33,17 +33,20 @@
             panel1 = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button3 = new Button();
             button2 = new Button();
             label2 = new Label();
             label1 = new Label();
             button1 = new Button();
             tabPage2 = new TabPage();
-            button3 = new Button();
+            label3 = new Label();
+            dateTimePicker1 = new DateTimePicker();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -105,8 +108,19 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(186, 348);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "Заказы";
+            tabPage1.Text = "Просмотр";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.LightGreen;
+            button3.Location = new Point(99, 264);
+            button3.Name = "button3";
+            button3.Size = new Size(80, 70);
+            button3.TabIndex = 7;
+            button3.Text = "Завершён";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -152,24 +166,32 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(dateTimePicker1);
+            tabPage2.Controls.Add(label3);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(186, 348);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Добавление";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // label3
             // 
-            button3.BackColor = Color.LightGreen;
-            button3.Location = new Point(99, 264);
-            button3.Name = "button3";
-            button3.Size = new Size(80, 70);
-            button3.TabIndex = 7;
-            button3.Text = "Завершён";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label3.Location = new Point(19, 13);
+            label3.Name = "label3";
+            label3.Size = new Size(150, 14);
+            label3.TabIndex = 0;
+            label3.Text = "Добавлеие нового заказа";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(28, 44);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(141, 23);
+            dateTimePicker1.TabIndex = 1;
             // 
             // Form1
             // 
@@ -185,6 +207,8 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -201,5 +225,7 @@
         private Button button2;
         private Label label2;
         private Button button3;
+        private DateTimePicker dateTimePicker1;
+        private Label label3;
     }
 }

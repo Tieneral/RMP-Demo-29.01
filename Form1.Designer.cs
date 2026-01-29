@@ -33,9 +33,12 @@
             panel1 = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button2 = new Button();
+            label2 = new Label();
             label1 = new Label();
             button1 = new Button();
             tabPage2 = new TabPage();
+            button3 = new Button();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
             panel1.SuspendLayout();
@@ -92,6 +95,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button3);
+            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(button1);
             tabPage1.Location = new Point(4, 24);
@@ -101,6 +107,27 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Заказы";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.LightGreen;
+            button2.Location = new Point(5, 263);
+            button2.Name = "button2";
+            button2.Size = new Size(80, 70);
+            button2.TabIndex = 6;
+            button2.Text = "В процессе";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(29, 218);
+            label2.Name = "label2";
+            label2.Size = new Size(129, 28);
+            label2.TabIndex = 4;
+            label2.Text = "Посмотреть заказы с \r\nвыбранным статусом";
             // 
             // label1
             // 
@@ -128,10 +155,21 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(186, 416);
+            tabPage2.Size = new Size(186, 348);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.LightGreen;
+            button3.Location = new Point(99, 264);
+            button3.Name = "button3";
+            button3.Size = new Size(80, 70);
+            button3.TabIndex = 7;
+            button3.Text = "Завершён";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // Form1
             // 
@@ -160,5 +198,8 @@
         private Label label1;
         private Button button1;
         private TabPage tabPage2;
+        private Button button2;
+        private Label label2;
+        private Button button3;
     }
 }

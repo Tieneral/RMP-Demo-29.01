@@ -1,8 +1,9 @@
 using System;
 using System.Data;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
-using System.Data.SQLite;
+using System.Windows.Forms;
 
 namespace RMP_Demo_29._01
 {
@@ -12,28 +13,47 @@ namespace RMP_Demo_29._01
         {
             InitializeComponent();
         }
-        private const string STATUS_IN_PROGRESS = "В процессе";
-        private const string STATUS_COMPLETED = "Завершён";
 
-        public static void OrderView(DataGridView dgv, string dbPath = "..\\..\\..\\!_DB.db")
+        public static void OrderView(DataGridView dgv, string status = "")
         {
-            string connectionString = $"Data Source={dbPath};Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
+            string query = @"
+                SELECT 
+                    o.ord_id,
+                    c.name,
+                    o.disc,
+                    o.start_date,
+                    o.order_status,
+                    d.type,
+                    e.name
+                FROM Orders o
+                JOIN Clients c ON o.cl_id = c.cl_id
+                JOIN Devices d ON o.dev_id = d.dev_id
+                JOIN Employees e ON o.emp_id = e.emp_id";
+
+            if (status == "В процессе" || status == "Завершён")
+            {
+                query += $" WHERE o.order_status = '{status}'";
+            }
+
+            query += " ORDER BY o.ord_id;";
+
+            using (var connection = new SQLiteConnection($"Data Source=..\\..\\..\\!_DB.db;Version=3;"))
             {
                 connection.Open();
-                string query = "SELECT \r\n    o.ord_id,\r\n    c.name AS client_name,\r\n    o.disc AS description,\r\n    o.start_date,\r\n    o.order_status,\r\n    d.type AS device_type,\r\n    e.name AS employee_name\r\nFROM Orders o\r\nJOIN Clients c ON o.cl_id = c.cl_id\r\nJOIN Devices d ON o.dev_id = d.dev_id\r\nJOIN Employees e ON o.emp_id = e.emp_id\r\nORDER BY o.ord_id;";
                 using (var adapter = new SQLiteDataAdapter(query, connection))
                 {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    dgv.DataSource = dataTable;
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dgv.DataSource = dt;
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OrderView(dgv);
-        }
+        private void button1_Click(object sender, EventArgs e) => OrderView(dgv);
+
+        private void button2_Click(object sender, EventArgs e) => OrderView(dgv, "В процессе");
+
+        private void button3_Click(object sender, EventArgs e) => OrderView(dgv, "Завершён");
+
     }
 }
